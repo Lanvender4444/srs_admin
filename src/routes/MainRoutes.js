@@ -3,20 +3,25 @@ import { lazy } from 'react';
 // project imports
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
+import { element } from 'prop-types';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
-// utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
-const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
+// SRS routing
+const ClientPage = Loadable(lazy(() => import('views/srs/client')));
+const ConfigPage = Loadable(lazy(() => import('views/srs/config')));
+const ConnectPage = Loadable(lazy(() => import('views/srs/connect')));
+const ConsolePage = Loadable(lazy(() => import('views/srs/console')));
+const StreamPage = Loadable(lazy(() => import('views/srs/stream')));
+const SummaryPage = Loadable(lazy(() => import('views/srs/summary')));
+const VhostsPage = Loadable(lazy(() => import('views/srs/vhosts')));
 
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
-const TestPage = Loadable(lazy(() => import('views/test-page')));
+// Manage routing
+
+const UserPage = Loadable(lazy(() => import('views/manage/user')));
+const AuthorityPage = Loadable(lazy(() => import('views/manage/authority')));
+const HistoryPage = Loadable(lazy(() => import('views/manage/history')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -37,57 +42,54 @@ const MainRoutes = {
             ]
         },
         {
-            path: 'utils',
+            path: 'srs',
             children: [
                 {
-                    path: 'util-typography',
-                    element: <UtilsTypography />
+                    path: 'connect',
+                    element: <ConnectPage />
+                },
+                {
+                    path: 'client',
+                    element: <ClientPage />
+                },
+                {
+                    path: 'config',
+                    element: <ConfigPage />
+                },
+                {
+                    path: 'console',
+                    element: <ConsolePage />
+                },
+                {
+                    path: 'stream',
+                    element: <StreamPage />
+                },
+                {
+                    path: 'summary',
+                    element: <SummaryPage />
+                },
+                {
+                    path: 'vhosts',
+                    element: <VhostsPage />
                 }
             ]
         },
         {
-            path: 'utils',
+            path: 'manage',
             children: [
                 {
-                    path: 'util-color',
-                    element: <UtilsColor />
-                }
-            ]
-        },
-        {
-            path: 'utils',
-            children: [
+                    path: 'authority',
+                    element: <AuthorityPage />
+                },
                 {
-                    path: 'util-shadow',
-                    element: <UtilsShadow />
-                }
-            ]
-        },
-        {
-            path: 'icons',
-            children: [
+                    path: 'history',
+                    element: <HistoryPage />
+                },
                 {
-                    path: 'tabler-icons',
-                    element: <UtilsTablerIcons />
+                    path: 'user',
+                    element: <UserPage />
                 }
             ]
-        },
-        {
-            path: 'icons',
-            children: [
-                {
-                    path: 'material-icons',
-                    element: <UtilsMaterialIcons />
-                }
-            ]
-        },
-        {
-            path: 'sample-page',
-            element: <SamplePage />
-        },
-        {
-            path: 'test-page',
-            element: <TestPage />
         }
     ]
 };

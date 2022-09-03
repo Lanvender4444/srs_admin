@@ -1,8 +1,8 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons';
+import { IconBrandGithub } from '@tabler/icons';
 
 // constant
-const icons = { IconBrandChrome, IconHelp };
+const icons = { IconBrandGithub };
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
@@ -11,29 +11,13 @@ const other = {
     type: 'group',
     children: [
         {
-            id: 'sample-page',
-            title: 'Sample Page',
-            type: 'item',
-            url: '/sample-page',
-            icon: icons.IconBrandChrome,
-            breadcrumbs: false
-        },
-        {
             id: 'documentation',
-            title: 'Documentation',
+            title: 'Github仓库',
             type: 'item',
-            url: 'https://codedthemes.gitbook.io/berry/',
-            icon: icons.IconHelp,
+            url: 'https://github.com/Marksagittarius/srs_admin',
+            icon: icons.IconBrandGithub,
             external: true,
             target: true
-        },
-        {
-            id: 'test-page',
-            title: 'Test Page',
-            type: 'item',
-            url: '/test-page',
-            icon: icons.IconBrandChrome,
-            breadcrumbs: false
         }
     ]
 };
