@@ -1,19 +1,38 @@
 // material-ui
 import { DataGrid } from '@mui/x-data-grid';
+import { Button } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 
+// React
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import http from 'utils/ajax';
 import config from 'configuration';
 // ==============================|| SAMPLE PAGE ||============================== //
 const baseURL = config.baseURL;
 
+const PlayButton = (cellValues) => {
+    const navigate = useNavigate();
+
+    return (
+        <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+                navigate(`/srs/flv/${cellValues.row.app.replace('/', '$')}/${cellValues.row.name}`);
+            }}
+        >
+            预览
+        </Button>
+    );
+};
+
 const columns = [
     { field: 'id', headerName: 'ID', width: 120 },
     { field: 'name', headerName: '流名称', width: 100 },
-    { field: 'status', headerName: '状态', width: 100 },
+    { field: 'app', headerName: 'app名称', width: 70 },
     {
         field: 'clients',
         headerName: '在线人数',
@@ -41,6 +60,11 @@ const columns = [
         field: 'audio_info',
         headerName: '音频信息',
         width: 160
+    },
+    {
+        field: 'Play',
+        headerName: '播放',
+        renderCell: PlayButton
     }
 ];
 
@@ -55,7 +79,7 @@ const StreamPage = () => {
                         return {
                             id: item.id,
                             name: item.name,
-                            status: 'on',
+                            app: item.app,
                             clients: item.clients,
                             recv_bytes: item.kbps.recv_30s,
                             send_bytes: item.kbps.send_30s,
@@ -81,7 +105,7 @@ const StreamPage = () => {
     return (
         <MainCard title="Stream">
             <div style={{ height: 400, width: '100%' }}>
-                <DataGrid rows={rows} columns={columns} pageSize={5} rowsPerPageOptions={[5]} checkboxSelection />
+                <DataGrid rows={rows} columns={columns} pageSize={5} rowsPerPageOptions={[5]} />
             </div>
         </MainCard>
     );

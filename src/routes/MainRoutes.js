@@ -3,7 +3,6 @@ import { lazy } from 'react';
 // project imports
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
-import { element } from 'prop-types';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -16,6 +15,7 @@ const ConsolePage = Loadable(lazy(() => import('views/srs/console')));
 const StreamPage = Loadable(lazy(() => import('views/srs/stream')));
 const SummaryPage = Loadable(lazy(() => import('views/srs/summary')));
 const VhostsPage = Loadable(lazy(() => import('views/srs/vhosts')));
+const FlvPage = Loadable(lazy(() => import('views/srs/flv')));
 
 // Manage routing
 
@@ -71,6 +71,10 @@ const MainRoutes = {
                 {
                     path: 'vhosts',
                     element: <VhostsPage />
+                },
+                {
+                    path: 'flv/:app/:name',
+                    element: <FlvPage />
                 }
             ]
         },
